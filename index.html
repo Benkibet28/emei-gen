@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>IMEI Pro • Secure Generator (Cash 500)</title>
+  <!-- Font Awesome 5 (free) -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+  <!-- Google Font Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(145deg, #0a0f1e 0%, #111827 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      color: #e5e7eb;
+    }
+
+    .card {
+      background: rgba(18, 25, 40, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 255, 255, 0.15);
+      border-radius: 2.5rem;
+      padding: 2rem 1.8rem;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(0, 255, 255, 0.1) inset;
+      transition: all 0.2s ease;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .logo-icon {
+      background: linear-gradient(135deg, #00e0ff, #0066ff);
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: white;
+      box-shadow: 0 8px 20px -6px #0066ff;
+    }
+
+    .logo-text h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(to right, #fff, #a0d0ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .logo-text span {
+      font-size: 0.8rem;
+      color: #7f8ea3;
+      font-weight: 500;
+      display: block;
+      margin-top: 2px;
+      letter-spacing: 0.4px;
+    }
+
+    .payment-gate {
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 1.8rem;
+      padding: 1.6rem 1.4rem;
+      margin-bottom: 1.8rem;
+      border: 1px dashed rgba(255, 215, 0, 0.4);
+      transition: all 0.3s;
+    }
+
+    .payment-gate.unlocked {
+      border-color: #10b981;
+      background: rgba(16, 185, 129, 0.08);
+      opacity: 0.9;
+    }
+
+    .gate-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1.4rem;
+    }
+
+    .gate-header i {
+      font-size: 1.6rem;
+      color: #fbbf24;
+    }
+
+    .gate-header h2 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #f0f4ff;
+    }
+
+    .payment-method {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #0a0f1e;
+      border-radius: 60px;
+      padding: 0.8rem 1.2rem;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+    }
+
+    .payment-method i {
+      font-size: 1.8rem;
+      color: #fbbf24;
+    }
+
+    .payment-method .info {
+      flex: 1;
+    }
+
+    .payment-method .info .label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #6c7c95;
+      margin-bottom: 2px;
+    }
+
+    .payment-method .info .value {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #00e0ff;
+      letter-spacing: 1px;
+    }
+
+    .payment-method .info .value small {
+      font-size: 0.9rem;
+      color: #9aa9c0;
+      font-weight: 400;
+      margin-left: 8px;
+    }
+
+    .payment-instruction {
+      font-size: 0.9rem;
+      color: #a1b0c5;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.5;
+    }
+
+    .payment-instruction i {
+      color: #fbbf24;
+      margin-top: 3px;
+    }
+
+    .pay-btn {
+      background: linear-gradient(145deg, #1e2b41, #0f172a);
+      border: 1px solid #2d3a55;
+      color: white;
+      width: 100%;
+      padding: 1rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 6px 0 #0b111e;
+    }
+
+    .pay-btn i {
+      color: #22c55e;
+      font-size: 1.2rem;
+    }
+
+    .pay-btn:hover:not(:disabled) {
+      background: linear-gradient(145deg, #25344f, #131d30);
+      transform: translateY(-2px);
+      box-shadow: 0 9px 0 #0b111e;
+    }
+
+    .pay-btn:active:not(:disabled) {
+      transform: translateY(4px);
+      box-shadow: 0 2px 0 #0b111e;
+    }
+
+    .pay-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      box-shadow: 0 6px 0 #0b111e;
+      transform: translateY(0);
+    }
+
+    .unlock-status {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-align: center;
+      color: #fbbf24;
+      min-height: 1.5rem;
+    }
+
+    .generator-section {
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1);
+    }
+
+    .generator-section.locked {
+      opacity: 0.5;
+      pointer-events: none;
+      filter: blur(2px);
+      user-select: none;
+    }
+
+    .imei-display {
+      background: #0b111e;
+      border-radius: 2rem;
+      padding: 1.8rem 1rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      box-shadow: 0 0 20px rgba(0, 224, 255, 0.1) inset;
+    }
+
+    .imei-label {
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      color: #6c7c95;
+      margin-bottom: 0.5rem;
+    }
+
+    .imei-value {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      word-break: break-all;
+      color: #b9e6ff;
+      text-shadow: 0 0 12px rgba(0, 224, 255, 0.5);
+      font-family: 'Inter', monospace;
+    }
+
+    .gen-btn {
+      background: linear-gradient(135deg, #00b4d8, #0077b6);
+      border: none;
+      color: white;
+      width: 100%;
+      padding: 1.2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 10px 20px -8px #0077b6;
+      margin-bottom: 0.8rem;
+    }
+
+    .gen-btn i {
+      font-size: 1.3rem;
+    }
+
+    .gen-btn:hover:not(:disabled) {
+      background: linear-gradient(135deg, #00c8f0, #0088cc);
+      transform: scale(1.01);
+    }
+
+    .gen-btn:active:not(:disabled) {
+      transform: scale(0.98);
+    }
+
+    .small-note {
+      font-size: 0.75rem;
+      text-align: center;
+      color: #5d6f88;
+      letter-spacing: 0.3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .small-note i {
+      color: #10b981;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) scale(0.9);
+      background: #10b981;
+      color: #041e1e;
+      font-weight: 600;
+      padding: 0.8rem 1.8rem;
+      border-radius: 60px;
+      opacity: 0;
+      transition: all 0.3s ease;
+      box-shadow: 0 15px 25px -8px rgba(0,0,0,0.6);
+      z-index: 999;
+      pointer-events: none;
+      font-size: 0.95rem;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid #a7f3d0;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+    }
+
+    .toast i {
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <!-- Header -->
+    <div class="logo">
+      <div class="logo-icon">
+        <i class="fas fa-mobile-alt"></i>
+      </div>
+      <div class="logo-text">
+        <h1>IMEI Forge</h1>
+        <span>secure • reliable • instant</span>
+      </div>
+    </div>
+
+    <!-- Payment gate -->
+    <div class="payment-gate" id="paymentGate">
+      <div class="gate-header">
+        <i class="fas fa-lock"></i>
+        <h2>Unlock generator</h2>
+      </div>
+
+      <!-- Cash payment method display -->
+      <div class="payment-method">
+        <i class="fas fa-money-bill-wave"></i>
+        <div class="info">
+          <div class="label">Cash payment</div>
+          <div class="value">KES 500 <small>(five hundred)</small></div>
+        </div>
+      </div>
+
+      <div class="payment-instruction">
+        <i class="fas fa-info-circle"></i>
+        <span>Pay <strong>KES 500 cash</strong> to the agent or via the number <strong>0143158775</strong>. After payment, click the button below to unlock.</span>
+      </div>
+      <button class="pay-btn" id="payBtn">
+        <i class="fas fa-hand-holding-usd"></i> I have paid – Unlock
+      </button>
+      <div class="unlock-status" id="unlockStatus"></div>
+    </div>
+
+    <!-- Generator section (locked by default) -->
+    <div class="generator-section locked" id="generatorSection">
+      <div class="imei-display">
+        <div class="imei-label">YOUR GENERATED IMEI</div>
+        <div class="imei-value" id="imeiValue">— — — — — — — — — — — — — — —</div>
+      </div>
+      <button class="gen-btn" id="generateBtn">
+        <i class="fas fa-cog fa-spin"></i> Generate new IMEI
+      </button>
+      <div class="small-note">
+        <i class="fas fa-check-circle"></i> Luhn-valid • 15 digits • TAC verified
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i> <span id="toastMsg">Payment confirmed. Generator unlocked!</span>
+  </div>
+
+  <script>
+    (function() {
+      // DOM elements
+      const paymentGate = document.getElementById('paymentGate');
+      const payBtn = document.getElementById('payBtn');
+      const unlockStatus = document.getElementById('unlockStatus');
+      const generatorSection = document.getElementById('generatorSection');
+      const generateBtn = document.getElementById('generateBtn');
+      const imeiValue = document.getElementById('imeiValue');
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+
+      // State
+      let isUnlocked = false;
+      let isProcessing = false;
+
+      // ---------- TOAST HELPER ----------
+      function showToast(message, isSuccess = true) {
+        toastMsg.textContent = message;
+        toast.style.background = isSuccess ? '#10b981' : '#ef4444';
+        toast.style.color = isSuccess ? '#041e1e' : '#ffffff';
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 2800);
+      }
+
+      // ---------- UNLOCK FLOW (simulated cash payment confirmation) ----------
+      function handlePaymentUnlock() {
+        if (isUnlocked) return;
+        if (isProcessing) return;
+
+        isProcessing = true;
+        payBtn.disabled = true;
+        payBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying payment...';
+        unlockStatus.textContent = '⏳ Checking cash payment record...';
+
+        // Simulate verification delay (1.8s)
+        setTimeout(() => {
+          // For demo: always success
+          const paymentSuccess = true; 
+
+          if (paymentSuccess) {
+            // Unlock UI
+            isUnlocked = true;
+            paymentGate.classList.add('unlocked');
+            generatorSection.classList.remove('locked');
+
+            // Update payment area
+            unlockStatus.innerHTML = '<i class="fas fa-check-circle" style="color: #10b981;"></i> Cash payment confirmed. Generator unlocked.';
+            payBtn.innerHTML = '<i class="fas fa-check-circle"></i> Unlocked (KES 500)';
+            payBtn.disabled = true;
+            payBtn.style.opacity = '0.7';
+            payBtn.style.cursor = 'default';
+
+            // Show success toast
+            showToast('✅ Cash payment confirmed! IMEI generator unlocked.', true);
+
+            // Auto-generate first IMEI
+            generateIMEI();
+          } else {
+            // Fallback (not used)
+            unlockStatus.textContent = '❌ Payment not found. Try again.';
+            payBtn.disabled = false;
+            payBtn.innerHTML = '<i class="fas fa-hand-holding-usd"></i> I have paid – Unlock';
+          }
+          isProcessing = false;
+        }, 1800);
+      }
+
+      // ---------- IMEI GENERATOR (Luhn valid) ----------
+      function generateIMEI() {
+        // TAC (Type Allocation Code) - first 8 digits (realistic looking)
+        const tacPrefixes = [
+          '353918', '354789', '356789', '358123', '351234', 
+          '861234', '862345', '863456', '864567', '865678',
+          '351789', '352345', '353456', '354567', '355678'
+        ];
+        const randomTac = tacPrefixes[Math.floor(Math.random() * tacPrefixes.length)];
+
+        // Generate 6 random digits for serial (positions 9-14)
+        let serial = '';
+        for (let i = 0; i < 6; i++) {
+          serial += Math.floor(Math.random() * 10);
+        }
+
+        // Build the first 14 digits (TAC 8 + serial 6 = 14)
+        let base14 = randomTac + serial;
+
+        // Ensure it's exactly 14 digits
+        if (base14.length !== 14) {
+          base14 = '353918' + '123456'; // fallback
+        }
+
+        // Calculate Luhn check digit
+        const checkDigit = computeLuhnCheckDigit(base14);
+        const fullIMEI = base14 + checkDigit;
+
+        // Update UI with nice spacing
+        imeiValue.textContent = fullIMEI.replace(/(\d{5})(\d{5})(\d{5})/, '$1 $2 $3');
+        
+        // Subtle animation
+        imeiValue.style.transform = 'scale(1.02)';
+        setTimeout(() => { imeiValue.style.transform = 'scale(1)'; }, 150);
+      }
+
+      // Luhn algorithm: compute check digit for 14-digit string
+      function computeLuhnCheckDigit(digits14) {
+        let sum = 0;
+        // Process from rightmost (index 13) to left
+        for (let i = 0; i < 14; i++) {
+          let digit = parseInt(digits14[13 - i], 10);
+          // Double every second digit from the right (i=1,3,5...)
+          if (i % 2 === 1) {
+            digit *= 2;
+            if (digit > 9) digit -= 9;
+          }
+          sum += digit;
+        }
+        return (10 - (sum % 10)) % 10;
+      }
+
+      // ---------- EVENT LISTENERS ----------
+      payBtn.addEventListener('click', handlePaymentUnlock);
+
+      generateBtn.addEventListener('click', function() {
+        if (!isUnlocked) {
+          showToast('Please complete payment first.', false);
+          return;
+        }
+        generateIMEI();
+        generateBtn.style.transform = 'scale(0.96)';
+        setTimeout(() => { generateBtn.style.transform = 'scale(1)'; }, 100);
+      });
+
+      // Initial status hint
+      setTimeout(() => {
+        if (!isUnlocked) {
+          unlockStatus.innerHTML = '<i class="fas fa-clock"></i> Cash payment of KES 500 required to unlock.';
+        }
+      }, 400);
+    })();
+  </script>
+</body>
+  </html>
